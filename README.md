@@ -84,16 +84,19 @@ entries from the `responses.gift` config.
 
 ### High Five
 Yaib will jump in and finish high fives (any message ending with o/), at a
-configurable rate. Set the `high5_finish_chance` option to change the frequency
-and the `high5` block in `responses` to control her actions.
+configurable rate. Set the `high5_regex` to configure exactly what is matched,
+`high5_finish_chance` to change the frequency, and the `high5` block in
+`responses` to control her actions.
 
-`high5_finish_chance`: 0-1 chance to respond with \o to any message ending with o/
-`high5`: 'o/'
+`high5_regex`: 'o/'
+`high5_finish_chance`: 0-1 chance to respond with \o to any matching message
+`high5`: '\o'
 
 ### Example Config
 Example config that demonstrates all of the different options:
 
     "simple_response": {
+        "high5_regex": "(^|\\s+)[oO]/\\s*$",
         "high5_finish_chance": 0.25,
         "responses": {
             "gift": {

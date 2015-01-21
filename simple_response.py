@@ -81,9 +81,12 @@ class Plugin(BasePlugin):
         lower = message.lower().strip()
 
         # o/
-        if lower.endswith('o/') and hasattr(self.config, 'high5_finish_chance'):
-            if random.random() < self.config.high5_finish_chance:
-                self._sayDo(channel, nick, self.responses, 'high5')
+        if hasattr(self.config, 'high5_regex') and \
+                hasattr(self.config, 'high5_finish_chance'):
+            high5_match = re.search(self.config.high5_regex, lower)
+            if high5_match:
+                if random.random() < self.config.high5_finish_chance:
+                    self._sayDo(channel, nick, self.responses, 'high5')
 
         # test against each message key as a regex
         for regex in self.messages.keys():
